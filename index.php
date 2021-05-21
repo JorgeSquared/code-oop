@@ -6,13 +6,14 @@ error_reporting(E_ALL);
 require __DIR__.'/bootstrap.php';
 
 /** @var array $configuration */
-$shipLoader = new ShipLoader(
+$pdo = new PDO(
 	$configuration['db_dsn'],
 	$configuration['db_user'],
 	$configuration['db_pass']
 );
-$ships = $shipLoader->getShips(
-);
+
+$shipLoader = new ShipLoader($pdo);
+$ships = $shipLoader->getShips();
 
 $errorMessage = '';
 if (isset($_GET['error'])) {
