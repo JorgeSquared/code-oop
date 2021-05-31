@@ -7,16 +7,7 @@ require __DIR__.'/bootstrap.php';
 
 /** @var array $configuration */
 $container = new Container($configuration);
-$pdo = $container->getPDO();
-
-/** @var array $configuration */
-$pdo = new PDO(
-	$configuration['db_dsn'],
-	$configuration['db_user'],
-	$configuration['db_pass']
-);
-
-$shipLoader = new ShipLoader($pdo);
+$shipLoader = $container->getShipLoader();
 $ships = $shipLoader->getShips();
 
 $errorMessage = '';
